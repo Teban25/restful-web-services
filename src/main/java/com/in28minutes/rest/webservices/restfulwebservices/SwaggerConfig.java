@@ -32,6 +32,7 @@ public class SwaggerConfig {
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.produces(DEFAULT_PRODUCES_AND_CONSUMES)
-				.consumes(DEFAULT_PRODUCES_AND_CONSUMES);
+				.consumes(DEFAULT_PRODUCES_AND_CONSUMES)
+				.apiInfo(DEFAULT_API_INFO);
 	}
 }
