@@ -43,7 +43,7 @@ public class UserController {
 		}
 		
 		Resource<User> resource = new Resource<User>(user);
-		
+		// HATEOAS EXAMPLE
 		ControllerLinkBuilder linkTo = 
 				linkTo(ControllerLinkBuilder.methodOn(this.getClass()).retrieveAllUsers());
 		

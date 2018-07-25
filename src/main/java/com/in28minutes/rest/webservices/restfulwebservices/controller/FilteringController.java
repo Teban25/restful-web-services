@@ -1,7 +1,9 @@
 package com.in28minutes.rest.webservices.restfulwebservices.controller;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.http.converter.json.MappingJacksonValue;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,8 +39,11 @@ public class FilteringController {
 		List<SomeBean> list = Arrays.asList(new SomeBean("value1", "value2", "value3"),
 				new SomeBean("value4", "value5", "value6"));
 
+		Set<String> setList = new HashSet<>();
+		setList.add("field1");
+		setList.add("field2");
 		SimpleBeanPropertyFilter filter = SimpleBeanPropertyFilter
-				.serializeAllExcept("field3");
+				.serializeAllExcept(setList);
 		// filterOutAllExcept("field1","field2");
 
 		FilterProvider filters = new SimpleFilterProvider().
