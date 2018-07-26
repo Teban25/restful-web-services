@@ -14,20 +14,32 @@ public class UtilFilterMapping {
 	private SimpleBeanPropertyFilter filter;
 	private FilterProvider filters;
 	
-	public UtilFilterMapping(Object object) {
-		MappingJacksonValue mapping = new MappingJacksonValue(object);
+	public UtilFilterMapping(Object someBean) {
+		this.mapping = new MappingJacksonValue(someBean);
 	}
 	
-	public void configFilter(Set<String> setFilter, String filterBean) {
+	public MappingJacksonValue configFilterAllExcept(Set<String> setFilter, String filterBean) {
 		this.setFilter(SimpleBeanPropertyFilter.serializeAllExcept(setFilter));
 		
 		this.setFilters(new SimpleFilterProvider().
 				addFilter(filterBean, this.getFilter()));
 		
+		this.getMapping().setFilters(filters);
 		
+		return this.getMapping();
 	}
 	
-
+	public MappingJacksonValue configFilterOutAllExcept(Set<String> setFilter, String filterBean) {
+		this.setFilter(SimpleBeanPropertyFilter.filterOutAllExcept(setFilter));
+		
+		this.setFilters(new SimpleFilterProvider().
+				addFilter(filterBean, this.getFilter()));
+		
+		this.getMapping().setFilters(filters);
+		
+		return this.getMapping();
+	}
+	
 	public MappingJacksonValue getMapping() {
 		return mapping;
 	}
