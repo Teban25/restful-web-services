@@ -1,62 +1,48 @@
 package com.in28minutes.rest.webservices.restfulwebservices.model;
 
-import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
+@Entity
 public class Post {
 
+	@Id
+	@GeneratedValue
 	private Integer id;
-	private String title;
-	private String content;
-	private Date timestamp;
+	private String description;
 	
-	protected Post() {
-		
-	}
-	
-	public Post(Integer id, String title, String content, Date timestamp) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.content = content;
-		this.timestamp = timestamp;
-	}
+	@ManyToOne(fetch = FetchType.LAZY)
+	private User user;
 
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	public String getTitle() {
-		return title;
-	}
-	
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	
-	public String getContent() {
-		return content;
-	}
-	
-	public void setContent(String content) {
-		this.content = content;
+
+	public String getDescription() {
+		return description;
 	}
 
-	public Date getTimestamp() {
-		return timestamp;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public void setTimestamp(Date timestamp) {
-		this.timestamp = timestamp;
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override
 	public String toString() {
-		return "Post [id=" + id + ", title=" + title + ", content=" + content + ", timestamp=" + timestamp + "]";
+		return "Post [id=" + id + ", description=" + description + "]";
 	}
-	
-	
 }
